@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eixample Pedestrian Simulation</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="map-container">
+            <canvas id="map-canvas"></canvas>
+            <div id="animation-controls">
+                <button id="btn-play">Play</button>
+                <button id="btn-pause">Pause</button>
+                <button id="btn-step">Step</button>
+                <select id="speed-select">
+                    <option value="1">1x Speed</option>
+                    <option value="2">2x Speed</option>
+                    <option value="4">4x Speed</option>
+                    <option value="8">8x Speed</option>
+                </select>
+            </div>
+        </div>
+        
+        <div id="control-panel">
+            <h2>Eixample Simulator</h2>
+            
+            <div class="setting-group">
+                <h3>Grid Parameters</h3>
+                <div class="field-row">
+                    <label>Width <input type="number" id="grid-width" value="10" min="2" max="20"></label>
+                    <label>Height <input type="number" id="grid-height" value="10" min="2" max="20"></label>
+                </div>
+            </div>
+            
+            <div class="setting-group">
+                <h3>Traffic Signals</h3>
+                <div class="field-row">
+                    <label>Cycle (s) <input type="number" id="sig-cycle" value="90" min="30"></label>
+                    <label>Clearance <input type="number" id="sig-clearance" value="10" min="0"></label>
+                </div>
+                <div class="field-row">
+                    <label>Green X <input type="number" id="sig-green-x" value="35" min="10"></label>
+                    <label>Green Y <input type="number" id="sig-green-y" value="35" min="10"></label>
+                </div>
+                <label>Offset Mode
+                    <select id="sig-offset-mode">
+                        <option value="uniform_no_offset">Uniform No Offset</option>
+                        <option value="uniform_with_corridor_offsets" selected>Corridor Offsets (Green Wave)</option>
+                        <option value="custom_offsets">Random Offsets</option>
+                    </select>
+                </label>
+            </div>
+            
+            <div class="setting-group">
+                <h3>Pedestrian</h3>
+                <div class="field-row">
+                    <label>Speed (m/s) <input type="number" id="sim-speed" value="1.4" step="0.1" min="0.5"></label>
+                    <label>Seed <input type="number" id="sim-seed" value="42"></label>
+                </div>
+                <div class="field-row">
+                    <label>Batch Runs <input type="number" id="sim-batch-runs" value="10" min="1"></label>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button id="btn-run-single" class="btn-primary">Run Single</button>
+                <button id="btn-run-batch" class="btn-secondary">Run Batch (100x)</button>
+            </div>
+            
+            <div id="results-panel">
+                <h3>Simulation Results</h3>
+                <div id="results-container">
+                    <table id="results-table">
+                        <thead>
+                            <tr>
+                                <th>Strategy</th>
+                                <th title="Total Travel Time">Time</th>
+                                <th title="Walking Time">Walk</th>
+                                <th title="Waiting Time">Wait</th>
+                                <th title="Distance">Dist</th>
+                                <th title="Number of Stops">Stops</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-body">
+                            <!-- Populated by JS -->
+                            <tr><td colspan="6" class="empty-state">Run a simulation to see results</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
