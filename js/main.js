@@ -308,4 +308,4 @@ function animate() {
 }
 
 // Start app
-window.onload = init;
+init();
